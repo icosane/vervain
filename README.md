@@ -27,4 +27,4 @@ For ```auto-py-to-exe``` you can use my build template ```build_settings_git.jso
 - [tensorflow](https://github.com/tensorflow/tensorflow) by Google Brain Team
 
 # UI Overview
-![Model](https://raw.githubusercontent.com/icosane/vervain/main/collage.webp?token=GHSAT0AAAAAACRGQSFTFRVS7QU4DXMLQVMGZRCMJOQ)
+<img src="./collage.webp" alt="ui" />
