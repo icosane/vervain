@@ -1,5 +1,5 @@
 # About
-Win32 app for modeling dynamic systems and using image recognition for detecting sync.
+Win32 app for modeling dynamic systems and using image recognition for detecting synchronization.
 
 # How to use
 
@@ -15,15 +15,16 @@ Use ```syncdetect_executable``` for building it using [pyinstaller](https://pyin
 >
 For ```auto-py-to-exe``` you can use my build template ```build_settings_git.json```.
 
-# Requirements
-```
-darkdetect==0.7.1
-matplotlib==3.8.1
-numpy==1.26.1
-Pillow==10.0.1
-PyQt5==5.15.10
-pyqtdarktheme==2.1.0
-scipy==1.11.3
-tensorflow==2.14.0
-PyQt5-sip==12.13.0
-```
+# Libraries used in this project
+
+- [darkdetect](https://github.com/albertosottile/darkdetect) by Alberto Sottile
+- [matplotlib](https://github.com/matplotlib/matplotlib) by Matplotlib
+- [numpy](https://github.com/numpy/numpy) by numpy
+- [Pillow](https://github.com/python-pillow/Pillow) by python-pillow 
+- [PyQt5](https://pypi.org/project/PyQt5/) by Riverbank Computing 
+- [pyqtdarktheme](https://github.com/5yutan5/PyQtDarkTheme) by 5yutan5
+- [scipy](https://pypi.org/project/scipy/) by SciPy
+- [tensorflow](https://github.com/tensorflow/tensorflow) by Google Brain Team
+
+# UI Overview
+![Model](https://raw.githubusercontent.com/icosane/vervain/main/collage.webp?token=GHSAT0AAAAAACRGQSFTFRVS7QU4DXMLQVMGZRCMJOQ)
