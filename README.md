@@ -26,7 +26,7 @@ For ```auto-py-to-exe``` you can use my build template ```build_settings_git.jso
 - [scipy](https://pypi.org/project/scipy/) by SciPy
 - [tensorflow](https://github.com/tensorflow/tensorflow) by Google Brain Team
 
-Icon from [veryicon](www.veryicon.com) by [zuozuozuozuo](https://www.veryicon.com/icons/miscellaneous/standard-general-linear-icon/sync-18.html)
+Icon from [veryicon](https://www.veryicon.com) by [zuozuozuozuo](https://www.veryicon.com/icons/miscellaneous/standard-general-linear-icon/sync-18.html)
 
 # UI Overview
 <img src="./collage.webp" alt="ui" />
