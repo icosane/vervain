@@ -625,6 +625,22 @@
          </item>
         </layout>
        </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btn_1">
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>compare</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page_3">
@@ -1089,6 +1105,22 @@
          </property>
          <property name="text">
           <string>go back</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btn_2">
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>compare</string>
          </property>
         </widget>
        </item>
@@ -1616,6 +1648,22 @@
          </property>
          <property name="text">
           <string>go back</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btn_3">
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>compare</string>
          </property>
         </widget>
        </item>

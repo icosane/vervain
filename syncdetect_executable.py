@@ -26,6 +26,21 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+class IV_window(QtWidgets.QWidget):                           # <===
+    def __init__(self):
+        super().__init__()
+        Form, Base = uic.loadUiType(resource_path("image_viewer1.ui"))
+        self.ui = Form()
+        self.ui.setupUi(self)
+        self.setWindowTitle("Sync Error Viewer")
+        self.setWindowIcon(QtGui.QIcon(resource_path("icon.svg")))
+        self.ui.pushButton.clicked.connect(self.browsefiles)
+        
+    def browsefiles(self):
+        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,'Single File',QtCore.QDir.currentPath() , 'Image (*.png *.jpg *jpeg)')
+        self.ui.label.clear()
+        self.ui.label.setPixmap(QPixmap(fileName))
+
 class MainWindow(QtWidgets.QWidget):
     signal_left = pyqtSignal(str) #сигналы для оповещения функций перематывапния изображений
     signal_right = pyqtSignal(str)
@@ -56,7 +71,7 @@ class MainWindow(QtWidgets.QWidget):
     #window3 = lorenz
     #window4 = chen
             
-    def set_window(self, index, equation_image_name, dark_mode_image, input_fields, calc_func):
+    def set_window(self, index, equation_image_name, dark_mode_image, input_fields, calc_func, IV_func):
         self.ui.stackedWidget.setCurrentIndex(index)
         getattr(self.ui, f'backbutton_{index}').clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
 
@@ -74,15 +89,16 @@ class MainWindow(QtWidgets.QWidget):
 
         getattr(self.ui, f'calcbtn_{index}').clicked.connect(calc_func)
         getattr(self.ui, f'calcbtn_{index}').clicked.connect(lambda: self.galbutt(index))
-
+        getattr(self.ui, f'btn_{index}').clicked.connect(IV_func)
+        
     def window2(self):
-        self.set_window(1, 'roessler_black.svg', 'roessler_white.svg', [self.ui.coupparamstart, self.ui.coupparamend, self.ui.param_a, self.ui.param_p, self.ui.param_c, self.ui.param_wr, self.ui.param_wd], self.roessler_func)
+        self.set_window(1, 'roessler_black.svg', 'roessler_white.svg', [self.ui.coupparamstart, self.ui.coupparamend, self.ui.param_a, self.ui.param_p, self.ui.param_c, self.ui.param_wr, self.ui.param_wd], self.roessler_func, self.IV_func)
 
     def window3(self):
-        self.set_window(2, 'lorenz_black.svg', 'lorenz_white.svg', [self.ui.coupparamstart_2, self.ui.coupparamend_2, self.ui.param_sigma, self.ui.param_beta, self.ui.param_r1, self.ui.param_r2], self.lorenz_func)
+        self.set_window(2, 'lorenz_black.svg', 'lorenz_white.svg', [self.ui.coupparamstart_2, self.ui.coupparamend_2, self.ui.param_sigma, self.ui.param_beta, self.ui.param_r1, self.ui.param_r2], self.lorenz_func, self.IV_func)
         
     def window4(self):
-        self.set_window(3, 'chen_black.svg', 'chen_white.svg', [self.ui.coupparamstart_3, self.ui.coupparamend_3, self.ui.param_a_3, self.ui.param_b_3, self.ui.param_c_3, self.ui.param_d_3, self.ui.param_e_3, self.ui.param_k1_3, self.ui.param_k2_3], self.chen_func)
+        self.set_window(3, 'chen_black.svg', 'chen_white.svg', [self.ui.coupparamstart_3, self.ui.coupparamend_3, self.ui.param_a_3, self.ui.param_b_3, self.ui.param_c_3, self.ui.param_d_3, self.ui.param_e_3, self.ui.param_k1_3, self.ui.param_k2_3], self.chen_func, self.IV_func)
     
     def galbutt(self, index):
         self.setup_widgets(index, getattr(self.ui, f'button_imgleft_{index}'), getattr(self.ui, f'button_imgright_{index}'), getattr(self.ui, f'showfolder_{index}'), self.signal_left, self.signal_right)
@@ -193,6 +209,10 @@ class MainWindow(QtWidgets.QWidget):
     def folderopen(self):#opening directory with all the generated images
         os.startfile(path_dir)
     
+    def IV_func(self):
+        self.w = IV_window()
+        self.w.show()
+        
     def neural(self,index):
         self.list_of_images = os.listdir(path_dir)
         model = keras.models.load_model(resource_path('sync_model.keras'))
