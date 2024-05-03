@@ -9,7 +9,7 @@ Download the latest release from [releases](https://github.com/icosane/vervain/r
 ## Building Locally/using your own libraries
 You can also run it using the ```.py``` files. 
 >
-Use ```syncdetect_local``` for running it in your IDE of choice. It expects all the additional files in the same directory.
+Use ```syncdetect_local``` for running it in your IDE of choice. It expects all the additional files from ```/assets``` in the same directory. 
 >
 Use ```syncdetect_executable``` for building it using [pyinstaller](https://pyinstaller.org/en/stable/) or [auto-py-to-exe](https://pypi.org/project/auto-py-to-exe/). 
 >

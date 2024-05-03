@@ -26,7 +26,7 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-class IV_window(QtWidgets.QWidget):                           # <===
+class ImageViewer_window(QtWidgets.QWidget):                          
     def __init__(self):
         super().__init__()
         Form, Base = uic.loadUiType(os.path.join(os.path.dirname(os.path.abspath(__file__)),"image_viewer1.ui"))
@@ -71,7 +71,7 @@ class MainWindow(QtWidgets.QWidget):
     #window3 = lorenz
     #window4 = chen
             
-    def set_window(self, index, equation_image_name, dark_mode_image, input_fields, calc_func, IV_func):
+    def set_window(self, index, equation_image_name, dark_mode_image, input_fields, calc_func, ImageViewer_func):
         self.ui.stackedWidget.setCurrentIndex(index)
         getattr(self.ui, f'backbutton_{index}').clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
 
@@ -88,19 +88,19 @@ class MainWindow(QtWidgets.QWidget):
             widget.setEnabled(False)
 
         getattr(self.ui, f'calcbtn_{index}').clicked.connect(calc_func)
-        getattr(self.ui, f'calcbtn_{index}').clicked.connect(lambda: self.galbutt(index))
-        getattr(self.ui, f'btn_{index}').clicked.connect(IV_func)
+        getattr(self.ui, f'calcbtn_{index}').clicked.connect(lambda: self.gallerybutton(index))
+        getattr(self.ui, f'btn_{index}').clicked.connect(ImageViewer_func)
 
     def window2(self):
-        self.set_window(1, 'roessler_black.svg', 'roessler_white.svg', [self.ui.coupparamstart, self.ui.coupparamend, self.ui.param_a, self.ui.param_p, self.ui.param_c, self.ui.param_wr, self.ui.param_wd], self.roessler_func, self.IV_func)
+        self.set_window(1, 'roessler_black.svg', 'roessler_white.svg', [self.ui.coupparamstart, self.ui.coupparamend, self.ui.param_a, self.ui.param_p, self.ui.param_c, self.ui.param_wr, self.ui.param_wd], self.roessler_func, self.ImageViewer_func)
 
     def window3(self):
-        self.set_window(2, 'lorenz_black.svg', 'lorenz_white.svg', [self.ui.coupparamstart_2, self.ui.coupparamend_2, self.ui.param_sigma, self.ui.param_beta, self.ui.param_r1, self.ui.param_r2], self.lorenz_func, self.IV_func)
+        self.set_window(2, 'lorenz_black.svg', 'lorenz_white.svg', [self.ui.coupparamstart_2, self.ui.coupparamend_2, self.ui.param_sigma, self.ui.param_beta, self.ui.param_r1, self.ui.param_r2], self.lorenz_func, self.ImageViewer_func)
         
     def window4(self):
-        self.set_window(3, 'chen_black.svg', 'chen_white.svg', [self.ui.coupparamstart_3, self.ui.coupparamend_3, self.ui.param_a_3, self.ui.param_b_3, self.ui.param_c_3, self.ui.param_d_3, self.ui.param_e_3, self.ui.param_k1_3, self.ui.param_k2_3], self.chen_func, self.IV_func)
+        self.set_window(3, 'chen_black.svg', 'chen_white.svg', [self.ui.coupparamstart_3, self.ui.coupparamend_3, self.ui.param_a_3, self.ui.param_b_3, self.ui.param_c_3, self.ui.param_d_3, self.ui.param_e_3, self.ui.param_k1_3, self.ui.param_k2_3], self.chen_func, self.ImageViewer_func)
     
-    def galbutt(self, index):
+    def gallerybutton(self, index): #gallery button
         self.setup_widgets(index, getattr(self.ui, f'button_imgleft_{index}'), getattr(self.ui, f'button_imgright_{index}'), getattr(self.ui, f'showfolder_{index}'), self.signal_left, self.signal_right)
 
     def setup_widgets(self, index, button_left, button_right, button_folder, signal_left, signal_right):
@@ -209,8 +209,8 @@ class MainWindow(QtWidgets.QWidget):
     def folderopen(self):#opening directory with all the generated images
         os.startfile(path_dir)
         
-    def IV_func(self):
-        self.w = IV_window()
+    def ImageViewer_func(self):
+        self.w = ImageViewer_window()
         self.w.show()
     
     def neural(self,index):
@@ -255,14 +255,12 @@ class MainWindow(QtWidgets.QWidget):
     def roessler_func(self):
         a, p, c, wr, wd, sr, se = self.roessler_param()
         coupling.clear()
-        #print(a, '\n', p, '\n', c, '\n', wr, '\n', wd, '\n', sr, '\n', se)  # отладка
         QtWidgets.QApplication.setOverrideCursor(QCursor(QtCore.Qt.WaitCursor))
         n = 0
         global tmp
         if tmp is not None:
             shutil.rmtree(tmp)
         tmp = tempfile.mkdtemp()
-        #print('Имя временного каталога:', tmp)
         global path_dir
         path_dir = pathlib.Path(tmp)
 
@@ -316,14 +314,12 @@ class MainWindow(QtWidgets.QWidget):
     def lorenz_func(self):
             sigma, beta, r1, r2, sr, se = self.lorenz_param()
             coupling.clear()
-            #print(sigma, '\n', beta, '\n', r1, '\n', r2, '\n', sr, '\n', se)  # отладка
             QtWidgets.QApplication.setOverrideCursor(QCursor(QtCore.Qt.WaitCursor))
             n = 0
             global tmp
             if tmp is not None:
                 shutil.rmtree(tmp)
             tmp = tempfile.mkdtemp()
-            #print('Имя временного каталога:', tmp)
             global path_dir
             path_dir = pathlib.Path(tmp)
 
@@ -340,7 +336,7 @@ class MainWindow(QtWidgets.QWidget):
                         r2*H[6]-H[7]-H[6]*H[8],#H[7]-Y3
                         (-beta*H[8]+H[6]*H[7])])#H[8]-Z3
 
-            for K in np.arange(sr+0.5, se+0.5): #very funny fix
+            for K in np.arange(sr+0.5, se+0.5): #python 3.11 fix
                 t = np.linspace(0, 400, 40000)
                 coupling.append(K-0.5)
                 H0 = [0.001, 0.001, 0.001, 0.002, 0.002, 0.002, 1.05, 1.05, 1.05 ]
@@ -379,14 +375,12 @@ class MainWindow(QtWidgets.QWidget):
     def chen_func(self):
                 a, b, c, d, e, k1, k2, sr, se = self.chen_param()
                 coupling.clear()
-                #print(a, '\n', b, '\n', c, '\n', d, '\n',  e, '\n',  k1, '\n',  k2, '\n', sr, '\n', se)  # отладка
                 QtWidgets.QApplication.setOverrideCursor(QCursor(QtCore.Qt.WaitCursor))
                 n = 0
                 global tmp
                 if tmp is not None:
                     shutil.rmtree(tmp)
                 tmp = tempfile.mkdtemp()
-                #print('Имя временного каталога:', tmp)
                 global path_dir
                 path_dir = pathlib.Path(tmp)
 
@@ -434,7 +428,6 @@ if __name__ == "__main__":
     qdarktheme.enable_hi_dpi()
     app = QtWidgets.QApplication(sys.argv)
     qdarktheme.setup_theme("auto") #theme dependant on OS theme
-    #app.setStyle('Fusion') #built-in style, default for Qt
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
