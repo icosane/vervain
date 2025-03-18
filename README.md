@@ -1,22 +1,21 @@
 # About
-Win32 application for modelling dynamic systems and using image recognition to detect synchronisation.
+Win32 application for modeling dynamic systems and image recognition-based synchronization detection.
 
 # How to use
 
 ## Ready-To-Use Builds
-Download the latest release from [releases](https://github.com/icosane/vervain/releases).
+Download the latest version from [releases](https://github.com/icosane/vervain/releases).
 
-## Building Locally/using your own libraries
-You can also run it using the ```.py``` files. 
+## Building Locally
 >
-Use ```syncdetect_local``` to run it in your IDE of choice. It expects all the additional files from ```/assets``` in the same directory. 
+Use ```syncdetect_local``` to run it in the IDE of your choice. It expects all the additional files from ```/assets``` in the same directory. 
 >
-Use ```syncdetect_executable``` to build it using [pyinstaller](https://pyinstaller.org/en/stable/) or [auto-py-to-exe](https://pypi.org/project/auto-py-to-exe/). 
+Use ```syncdetect_executable``` to build it with [pyinstaller](https://pyinstaller.org/en/stable/) or [auto-py-to-exe](https://pypi.org/project/auto-py-to-exe/). 
 >
 For ```auto-py-to-exe``` you can use my build template ```build_settings_git.json```.
 
-## Keras Model used in this project
-The file is too large to commit. Can be downloaded [here](https://github.com/icosane/vervain/releases/tag/v0.5) instead.
+## Keras model
+The file is too big to commit. It can be downloaded [here](https://github.com/icosane/vervain/releases/tag/v0.5) instead.
 >
 Use ```sync_model.keras```
 
